@@ -1,31 +1,121 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using GitHubTracker.ViewModels
+@model VmDashboard
+@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<style>
+    .redAlert {
+        background-color: #ffdbdb;
+    }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    .orangeAlert {
+        background-color: #ffefd2;
+    }
+
+    .greenAlert {
+        background-color: #d6f1d6;
+    }
+
+    .redIcon {
+        font-size: 2.5rem;
+        color: red;
+    }
+
+    .orangeIcon {
+        font-size: 2.5rem;
+        color: orange;
+    }
+
+    .greenIcon {
+        font-size: 2.5rem;
+        color: green;
+    }
+</style>
+
+<div class="container px-4 py-4" id="custom-cards">
+
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-4">
+
+        <div class="col">
+            <a asp-page="Index" style="text-decoration: none;">
+                <div class="card card-cover overflow-hidden text-white rounded-5 shadow-lg">
+                    <div class="d-flex flex-column h-100 p-4 pb-3 text-dark text-shadow-1">
+                        <div class="row">
+                            <div class="col-10">
+                                <h2 class="display-7 lh-1 fw-bold">Total Number of GitHub Users</h2>
+                            </div>
+                            <div class="col-2" style="text-align: right;">
+                                <i class="fa fa-check-circle-o" style="font-size: 2.5rem;color: green;"></i>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="display-7 lh-1 fw-bold">@Model.UserCount</h5>
+                            </div>
+                            <div class="col-2" style="text-align: right;">
+                                <i class="fa fa-angle-right" style="font-size: 1.5rem;font-weight: bold;"></i>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a asp-page="Index" style="text-decoration: none;">
+                <div class="card card-cover overflow-hidden text-white rounded-5 shadow-lg">
+                    <div class="d-flex flex-column h-100 p-4 pb-3 text-dark text-shadow-1">
+                        <div class="row">
+                            <div class="col-10">
+                                <h2 class="display-7 lh-1 fw-bold">Total Public Repos</h2>
+                            </div>
+                            <div class="col-2" style="text-align: right;">
+                                <i class="fa fa-check-circle-o" style="font-size: 2.5rem;color: green;"></i>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="display-7 lh-1 fw-bold">@Model.PublicRepoCount</h5>
+                            </div>
+                            <div class="col-2" style="text-align: right;">
+                                <i class="fa fa-angle-right" style="font-size: 1.5rem;font-weight: bold;"></i>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col">
+            <a asp-page="Index" style="text-decoration: none;">
+                <div class="card card-cover overflow-hidden text-white rounded-5 shadow-lg">
+                    <div class="d-flex flex-column h-100 p-4 pb-3 text-dark text-shadow-1">
+                        <div class="row">
+                            <div class="col-10">
+                                <h2 class="display-7 lh-1 fw-bold">Total Public Gists</h2>
+                            </div>
+                            <div class="col-2" style="text-align: right;">
+                                <i class="fa fa-check-circle-o" style="font-size: 2.5rem;color: green;"></i>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="display-7 lh-1 fw-bold">@Model.PublicGistCount</h5>
+                            </div>
+                            <div class="col-2" style="text-align: right;">
+                                <i class="fa fa-angle-right" style="font-size: 1.5rem;font-weight: bold;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </div>

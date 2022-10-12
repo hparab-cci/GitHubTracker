@@ -1,0 +1,63 @@
+﻿@using GitHubTracker.ViewModels
+@model VmAddUser
+@{
+    ViewBag.Title = "Add User";
+    ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("AddUser", "Home", FormMethod.Post, new { id = "formSaveUser" }))
+{
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="username">User Name</label>
+                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                @Html.TextBoxFor(model => model.EmailId, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="repocount">Public Repo Count</label>
+                @Html.TextBoxFor(model => model.PublicRepoCount, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="gistcount">Public Gist Count</label>
+                @Html.TextBoxFor(model => model.PublicGistCount, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="button" id="btnSubmit" class="btn btn-success" value="Submit">
+            <input type="button" id="btnReset" class="btn btn-danger" value="Reset">
+        </div>
+    </div>
+}
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        @*var message = @ViewBag.Message;
+        if (message != null) {
+            alert(message);
+        }*@
+    });
+
+    $("#btnSubmit").click(function (e) {
+        $('#formSaveUser').submit();
+    });
+
+    $("#btnReset").click(function (e) {
+        $('#formSaveUser')[0].reset();
+    })
+</script>
+
+

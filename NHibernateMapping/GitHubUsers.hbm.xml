@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                  assembly="GitHubTracker"
+                  namespace="NHibernateMapping">
+	<class name="GitHubTracker.NHibernateMapping.GitHubUsersImpl" table="GitHubUsers">
+		<id name="UserId" type="Int32" unsaved-value="0">
+			<column name="UserId" sql-type="int" not-null="true"/>
+			<generator class="native" />
+		</id>
+		<property name="UserName" type="String">
+			<column name="UserName" sql-type="VARCHAR(39)" not-null="true" />
+		</property>
+		<property name="EmailId" type="String">
+			<column name="EmailId" sql-type="VARCHAR(50)" not-null="true" />
+		</property>
+		<property name="PublicRepoCount" type="Int32">
+			<column name="PublicRepoCount" sql-type="int" not-null="true" />
+		</property>
+		<property name="PublicGistCount" type="Int32">
+			<column name="PublicGistCount" sql-type="int" not-null="true" />
+		</property>
+		<property name="CreateDate" type="DateTime">
+			<column name="CreateDate" sql-type="datetime" not-null="true" />
+		</property>
+		<property name="CreateUserId" type="Int32">
+			<column name="CreateUserId" sql-type="int" not-null="true" />
+		</property>
+		<property name="UpdateDate" type="DateTime">
+			<column name="UpdateDate" sql-type="datetime" not-null="false" />
+		</property>		
+	</class>
+
+</hibernate-mapping>
