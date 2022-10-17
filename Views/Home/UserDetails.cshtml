@@ -1,0 +1,70 @@
+﻿@using GitHubTracker.ViewModels
+@model VmUserDetails
+@{
+    ViewBag.Title = "User Details";
+    ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+
+    .redIcon {
+        font-size: 1.2rem;
+        color: red;
+    }
+
+    .orangeIcon {
+        font-size: 1.2rem;
+        color: orange;
+    }
+
+    .greenIcon {
+        font-size: 1.2rem;
+        color: green;
+    }
+</style>
+
+
+<div class="container px-4 py-4" id="custom-cards">
+
+    <div class="row border-bottom">
+        <div class="col-10">
+            <h3 class="pb-2 ">Github User Details</h3>
+        </div>
+    </div>
+
+
+    <div class="row row-cols-1 row-cols-lg-12 align-items-stretch g-4 py-4">
+        <div class="control-section">
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Name</th>
+                        <th>Public Repo Count</th>
+                        <th>Public Gist Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var objA in Model.Users)
+                    {
+                        <tr>
+                            <th width="15%">
+                                <span style="font-weight: normal;font-size: 14px;">@objA.UserName</span>
+                            </th>
+                            <th width="20%">
+                                <span style="font-weight: normal;font-size: 14px;"> @objA.Name</span> 
+                            </th>
+                            <th width="20%">
+                                <span style="font-weight: normal;font-size: 14px;">@objA.PublicRepoCount</span>
+                            </th>
+                            <th width="20%">
+                                <span style="font-weight: normal;font-size: 14px;"> @objA.PublicGistCount</span>
+                            </th>                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

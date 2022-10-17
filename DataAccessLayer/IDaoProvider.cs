@@ -11,8 +11,9 @@ namespace GitHubTracker.DataAccessLayer
     {
         T Create<T>(T t);
         List<T> GetAll<T>();
-        T GetObjectById(V v);
+        T GetObjectById(T v);
         void Update(T t);
         void Delete(T t);
+        T GetItemById<T, TId>(TId id);
     }
 }

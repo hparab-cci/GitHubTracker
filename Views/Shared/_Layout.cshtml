@@ -8,10 +8,12 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" href="~/Content/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        @*<div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -27,17 +29,32 @@
                     <li>@Html.ActionLink("CSV Upload", "Contact", "Home")</li>
                 </ul>
             </div>
+        *@
+
+        <div class="container">
+            @Html.ActionLink("GitHub Tracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link text-dark" })</li>
+                    <li class="nav-item">@Html.ActionLink("Add User", "SearchUser", "Home", new { @class = "nav-link text-dark" })</li>
+                    <li class="nav-item">@Html.ActionLink("CSV Upload", "Contact", "Home", new { @class = "nav-link text-dark" })</li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - GitHub Tracker</p>
-        </footer>
-    </div>
-
     
+    @RenderBody()
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p>&copy; @DateTime.Now.Year - GitHub Tracker</p>
+        </div>
+    </footer>
+
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -10,8 +10,8 @@
 		<property name="UserName" type="String">
 			<column name="UserName" sql-type="VARCHAR(39)" not-null="true" />
 		</property>
-		<property name="EmailId" type="String">
-			<column name="EmailId" sql-type="VARCHAR(50)" not-null="true" />
+		<property name="Name" type="String">
+			<column name="Name" sql-type="VARCHAR(50)" not-null="true" />
 		</property>
 		<property name="PublicRepoCount" type="Int32">
 			<column name="PublicRepoCount" sql-type="int" not-null="true" />

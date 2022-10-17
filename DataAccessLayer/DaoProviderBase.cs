@@ -30,9 +30,14 @@ namespace GitHubTracker.DataAccessLayer
             return icriteria.List<T>().ToList();
         }
 
-        public T GetObjectById(V v)
+        public T GetObjectById(T v)
         {
-            return (T) CurrentNhibernateSession.Load(typeof(T),v);
+            return (T)CurrentNhibernateSession.Load(typeof(T),v);
+        }
+
+        public TReturn GetItemById<TReturn, TId>(TId id)
+        {
+            return CurrentNhibernateSession.Get<TReturn>(id);
         }
 
         public void Update(T t)

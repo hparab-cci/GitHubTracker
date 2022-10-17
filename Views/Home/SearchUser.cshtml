@@ -1,0 +1,47 @@
+﻿@using GitHubTracker.ViewModels
+@model VmAddUser
+@{
+    ViewBag.Title = "Add User";
+    ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("SearchUser", "Home", FormMethod.Post, new { id = "formSearchUser" }))
+{
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="username">User Name</label>
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="text-align: center">
+        <input type="button" id="btnSubmit" class="btn btn-success" value="Search">
+        <input type="button" id="btnReset" class="btn btn-danger" value="Reset">
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+    }
+
+    <script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        @*var message = @ViewBag.Message;
+        if (message != null) {
+            alert(message);
+        }*@
+    });
+
+    $("#btnSubmit").click(function (e) {
+        $('#formSearchUser').submit();
+    });
+
+    $("#btnReset").click(function (e) {
+        $('#formSearchUser')[0].reset();
+    })
+    </script>
+
+

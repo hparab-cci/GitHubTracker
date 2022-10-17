@@ -5,11 +5,11 @@ using System.Web;
 
 namespace GitHubTracker.NHibernateMapping
 {
-    public abstract partial class GitHubUsers
+    public abstract class GitHubUsers
     {
         public virtual int UserId { get; set; }
         public virtual string UserName { get; set; }
-        public virtual string EmailId { get; set; }
+        public virtual string Name { get; set; }
         public virtual int PublicRepoCount { get; set; }
         public virtual int PublicGistCount { get; set; }
         public virtual DateTime CreateDate { get; set; }

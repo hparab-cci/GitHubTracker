@@ -8,7 +8,7 @@ using System.Web;
 
 namespace GitHubTracker.DataAccessLayer
 {
-    public class GitHubUsersDaoImpl : DaoProviderBase<GitHubUsersImpl, long>, IGitHubUsersDao
+    public class GitHubUsersDaoImpl : DaoProviderBase<GitHubUsersImpl, int>, IGitHubUsersDao
     {
         
 
@@ -21,5 +21,12 @@ namespace GitHubTracker.DataAccessLayer
         {
             return GetAll<GitHubUsers>();
         }
+
+        public GitHubUsers GetUserById(int id)
+        {
+            return GetItemById<GitHubUsers, int>(id);
+        }
+
+        
     }
 }
