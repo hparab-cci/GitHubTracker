@@ -39,10 +39,11 @@
             <table class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
-                        <th>User Name</th>
-                        <th>Name</th>
-                        <th>Public Repo Count</th>
-                        <th>Public Gist Count</th>
+                        <th style="text-align:center">User Name</th>
+                        <th style="text-align:center">Name</th>
+                        <th style="text-align:center">Public Repo Count</th>
+                        <th style="text-align:center">Public Gist Count</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,14 +54,17 @@
                                 <span style="font-weight: normal;font-size: 14px;">@objA.UserName</span>
                             </th>
                             <th width="20%">
-                                <span style="font-weight: normal;font-size: 14px;"> @objA.Name</span> 
+                                <span style="font-weight: normal;font-size: 14px;"> @objA.Name</span>
                             </th>
                             <th width="20%">
                                 <span style="font-weight: normal;font-size: 14px;">@objA.PublicRepoCount</span>
                             </th>
                             <th width="20%">
                                 <span style="font-weight: normal;font-size: 14px;"> @objA.PublicGistCount</span>
-                            </th>                            
+                            </th>
+                            <th width="5%" style="text-align:center">
+                                <a href="@Url.Action("DeleteUser", "Home", new {userId=objA.UserId})"><i class="fa fa-trash-o redIcon"></i></a>
+                            </th>
                         </tr>
                     }
                 </tbody>
@@ -68,3 +72,27 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+
+        @if (TempData["SuccessMsg"] != null)
+        {
+            @:ShowGritter('User Saved Successfully..!!');
+        }
+        @if (TempData["DeleteMsg"] != null)
+        {
+            @:ShowGritter('User Deleted Successfully..!!');
+        }
+    });
+    function ShowGritter(msg) {
+        $.gritter.add({
+            position: 'top-right',
+            fade_in_speed: 'medium',
+            fade_out_speed: 2000,
+            time: 6000,
+            title: 'Alert',
+            text: msg,
+            sticky: false
+        });
+    }
+</script>

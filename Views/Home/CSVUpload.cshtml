@@ -1,0 +1,129 @@
+﻿@using GitHubTracker.NHibernateMapping
+@model IEnumerable<GitHubUsers>
+@{
+    ViewBag.Title = "CSV Upload";
+    ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+
+    .redIcon {
+        font-size: 1.2rem;
+        color: red;
+    }
+
+    .orangeIcon {
+        font-size: 1.2rem;
+        color: orange;
+    }
+
+    .greenIcon {
+        font-size: 1.2rem;
+        color: green;
+    }
+</style>
+
+
+<div class="container px-4 py-4" id="custom-cards">
+
+    <div class="row border-bottom">
+        <div class="col-10">
+            <h3 class="pb-2 ">CSV Upload</h3>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("CSVUpload", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "formCSVUpload" }))
+    {
+        <br />
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="file" name="postedFile" id="fileUpload" accept=".csv"/>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4" style="text-align: center">
+                <input type="submit" id="btnSubmit" class="btn btn-success" value="Import">
+                &nbsp;
+                <input type="button" id="btnReset" class="btn btn-danger" value="Reset">
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    }
+    @if (Model.Count() > 0)
+    {
+        <div class="row row-cols-1 row-cols-lg-12 align-items-stretch g-4 py-4">
+            <div class="control-section">
+                <table class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center">User Name</th>
+                            <th style="text-align:center">Name</th>
+                            <th style="text-align:center">Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var objA in Model)
+                        {
+                        <tr>
+                            <th width="15%">
+                                <span style="font-weight: normal;font-size: 14px;">@objA.UserName</span>
+                            </th>
+                            <th width="20%">
+                                <span style="font-weight: normal;font-size: 14px;"> @objA.Name</span>
+                            </th>
+                            <th width="20%">
+                                <span style="font-weight: normal;font-size: 14px;"> @objA.Remarks</span>
+                            </th>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+</div>
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        @if (TempData["ErrorMsg"] != null && TempData["ErrorMsg"].ToString() == "Incorrect file format")
+        {
+            @:ShowGritter('Incorrect file format');
+        }
+        @if (TempData["ErrorMsg"] != null && TempData["ErrorMsg"].ToString() == "Empty file uploaded")
+        {
+            @:ShowGritter('Empty file uploaded');
+        }
+    });
+
+    $("#btnSubmit").click(function (e) {
+        if ($('#fileUpload').val() != "") {
+            $('#formCSVUpload').submit();
+        }
+        else {
+            ShowGritter('File not selected..!!');
+            return false;
+        }
+    });
+
+    $("#btnReset").click(function (e) {
+        $('#formCSVUpload')[0].reset();
+    })
+
+    function ShowGritter(msg) {
+        $.gritter.add({
+            position: 'top-right',
+            fade_in_speed: 'medium',
+            fade_out_speed: 2000,
+            time: 6000,
+            title: 'Error',
+            text: msg,
+            sticky: false
+        });
+    }
+</script>

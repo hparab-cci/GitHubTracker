@@ -15,6 +15,7 @@ namespace GitHubTracker.NHibernateMapping
         public virtual DateTime CreateDate { get; set; }
         public virtual int CreateUserId { get; set; } 
         public virtual DateTime? UpdateDate { get; set; }
+        public virtual string Remarks { get; set; }
 
         public static class Factory
         {

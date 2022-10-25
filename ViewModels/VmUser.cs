@@ -6,12 +6,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GitHubTracker.ViewModels
 {
-    public class VmAddUser
+    public class VmUser
     {
         [Required(ErrorMessage = "Required.")]
-        public string UserName { get; set; }
-        public string Name { get; set; }
-        public int PublicRepoCount { get; set; }
-        public int PublicGistCount { get; set; }
+        public string Username { get; set; }
+
+        [Required(ErrorMessage = "Required.")]
+        public string Password { get; set; }
     }
 }

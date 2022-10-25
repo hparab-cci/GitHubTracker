@@ -4,44 +4,79 @@
     ViewBag.Title = "Add User";
     ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title</h2>
-@using (Html.BeginForm("SearchUser", "Home", FormMethod.Post, new { id = "formSearchUser" }))
-{
-<div class="row">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4">
-        <div class="form-group">
-            <label for="username">User Name</label>
-            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="col-sm-4"></div>
-</div>
-<div class="row">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4" style="text-align: center">
-        <input type="button" id="btnSubmit" class="btn btn-success" value="Search">
-        <input type="button" id="btnReset" class="btn btn-danger" value="Reset">
-    </div>
-    <div class="col-sm-4"></div>
-</div>
+<style>
+    .gritter-info {
+        background: rgba(82, 172, 194, 0.8);
     }
 
-    <script type="text/javascript" language="javascript">
-    $(document).ready(function () {
-        @*var message = @ViewBag.Message;
-        if (message != null) {
-            alert(message);
-        }*@
-    });
+    .error {
+        color: red;
+    }
+</style>
+<div class="container px-4 py-4" id="custom-cards">
+    <div class="row border-bottom">
+        <div class="col-10">
+            <h3 class="pb-2 ">@ViewBag.Title</h3>
+        </div>
+    </div>
+    @using (Html.BeginForm("SearchUser", "Home", FormMethod.Post, new { id = "formSearchUser" }))
+    {
+        <br />
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "error" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4" style="text-align: center">
+                <input type="submit" id="btnSubmit" class="btn btn-success" value="Search">
+                &nbsp;
+                <input type="button" id="btnReset" class="btn btn-danger" value="Reset">
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+    }
+</div>
 
-    $("#btnSubmit").click(function (e) {
-        $('#formSearchUser').submit();
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+
+        @if (TempData["ErrorMsg"] != null && TempData["ErrorMsg"].ToString()== "User not found")
+        {
+            @: $('#UserName').val("");
+            @: ShowGritter('User not found..!!');
+        }
+        @if (TempData["ErrorMsg"] != null && TempData["ErrorMsg"].ToString()== "User already exists")
+        {
+            @: $('#UserName').val("");
+            @: ShowGritter('User already exists..!!');
+        }
     });
 
     $("#btnReset").click(function (e) {
         $('#formSearchUser')[0].reset();
     })
-    </script>
+    function ShowGritter(msg) {
+        $.gritter.add({
+            position: 'top-right',
+            fade_in_speed: 'medium',
+            fade_out_speed: 2000,
+            time: 6000,
+            title: 'Error',
+            text: msg,
+            class:'gritter-info',
+            sticky: false
+        });
+    }
+</script>
 
 

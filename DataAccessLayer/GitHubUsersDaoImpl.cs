@@ -10,8 +10,6 @@ namespace GitHubTracker.DataAccessLayer
 {
     public class GitHubUsersDaoImpl : DaoProviderBase<GitHubUsersImpl, int>, IGitHubUsersDao
     {
-        
-
         public GitHubUsers CreateUser(GitHubUsers user)
         {
             return Create<GitHubUsers>(user); 
@@ -27,6 +25,5 @@ namespace GitHubTracker.DataAccessLayer
             return GetItemById<GitHubUsers, int>(id);
         }
 
-        
     }
 }

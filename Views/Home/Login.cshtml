@@ -1,0 +1,72 @@
+﻿@using GitHubTracker.ViewModels
+@model VmUser
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style type="text/css">
+        body {
+            margin: 20pt !important;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'
+          media="screen" />
+
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    {
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" style="max-width: 500px; border:groove">
+            <h2 class="form-signin-heading" style="text-align:center">
+                GitHub Repository Tracker
+            </h2>
+            @Html.LabelFor(m => m.Username)
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+            <div>
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "error" })
+            </div>
+            <br />
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            <div>
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
+            </div>
+            <br />
+            <div style="text-align:center">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+
+            <br />
+            <br />
+            <div id="dvMessage" style="display:none" class="alert alert-danger">
+                <strong>Error!</strong>
+                <span>@ViewBag.Message</span>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    }
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (@ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(function () {
+                $("#dvMessage").show();
+            });
+        </script>
+    }
+</body>
+</html>

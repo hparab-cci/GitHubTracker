@@ -4,53 +4,61 @@
     ViewBag.Title = "Add User";
     ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title</h2>
-@using (Html.BeginForm("AddUser", "Home", FormMethod.Post, new { id = "formSaveUser" }))
-{
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label for="username">User Name</label>
-                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label for="email">Name</label>
-                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-            </div>
+<div class="container px-4 py-4" id="custom-cards">
+    <div class="row border-bottom">
+        <div class="col-10">
+            <h3 class="pb-2 ">@ViewBag.Title</h3>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label for="repocount">Public Repo Count</label>
-                @Html.TextBoxFor(model => model.PublicRepoCount, new { @class = "form-control" })
+    @using (Html.BeginForm("AddUser", "Home", FormMethod.Post, new { id = "formSaveUser" }))
+    {
+        <br />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="email">Name</label>
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @readonly = "readonly" })
+                </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <label for="gistcount">Public Gist Count</label>
-                @Html.TextBoxFor(model => model.PublicGistCount, new { @class = "form-control" })
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="repocount">Public Repo Count</label>
+                    @Html.TextBoxFor(model => model.PublicRepoCount, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="gistcount">Public Gist Count</label>
+                    @Html.TextBoxFor(model => model.PublicGistCount, new { @class = "form-control", @readonly = "readonly" })
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4" style="text-align: center">
-            <input type="button" id="btnSubmit" class="btn btn-success" value="Submit">
-            <input type="button" id="btnReset" class="btn btn-danger" value="Reset">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4" style="text-align: center">
+                <input type="button" id="btnSubmit" class="btn btn-success" value="Save">
+                &nbsp;
+                <input type="button" id="btnReset" class="btn btn-danger" value="Reset">
+            </div>
+            <div class="col-sm-4"></div>
         </div>
-        <div class="col-sm-4"></div>
-    </div>
-}
+    }
+</div>
 
 <script type="text/javascript" language="javascript">
     $(document).ready(function () {
-        @*var message = @ViewBag.Message;
-        if (message != null) {
-            alert(message);
-        }*@
+        @if (TempData["SuccessMsg"] != null)
+        {
+            @: alert('@TempData["SuccessMsg"].ToString()');
+        }
     });
 
     $("#btnSubmit").click(function (e) {
@@ -58,7 +66,8 @@
     });
 
     $("#btnReset").click(function (e) {
-        $('#formSaveUser')[0].reset();
+        //$('#formSaveUser')[0].reset();
+        window.location.href = '/Home/SearchUser/';
     })
 </script>
 
