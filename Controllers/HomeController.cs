@@ -244,9 +244,20 @@ namespace GitHubTracker.Controllers
         public ActionResult UpdateCount()
         {
             GitHubUsersDaoImpl userList = new GitHubUsersDaoImpl();
+            GitHubUsersLogDaoImpl logs = new GitHubUsersLogDaoImpl();
             List<GitHubUsers> users = userList.GetUsers();
             foreach (var user in users)
             {
+                GitHubUsersLogImpl log = new GitHubUsersLogImpl
+                {
+                    UserId = user.UserId,
+                    PublicRepoCount = user.PublicRepoCount,
+                    PublicGistCount = user.PublicGistCount,
+                    CreateDate = DateTime.Now,
+                    CreateUserId = (int)Session["UserId"]
+                };
+                logs.CreateLog(log);
+
                 Users rep = SearchGitHubUsers(user.UserName);
                 user.PublicRepoCount = rep.public_repos;
                 user.PublicGistCount=rep.public_gists;

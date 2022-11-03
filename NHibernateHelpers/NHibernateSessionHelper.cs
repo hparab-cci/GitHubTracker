@@ -24,7 +24,7 @@ namespace GitHubTracker.NHibernateHelpers
             });
 
             configuration.CurrentSessionContext<WebSessionContext>();
-            configuration.AddAssembly(typeof(GitHubUsers).Assembly);
+            configuration.AddAssembly("GitHubTracker");
             return configuration.BuildSessionFactory();
         }
     }
